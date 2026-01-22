@@ -1,0 +1,11 @@
+An algorithm for supervised learning of binary classifiers.
+It can be seen as a single unit of a neural network.
+A single layer perceptron can learn only lenearly separable patterns.
+
+It is a single layer neural network with the unit step function as an activation layer.
+
+update rules:
+w = w +  Dw
+b = b + Db
+
+Dw = alfa *  (y - y^) * x

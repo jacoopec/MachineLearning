@@ -1,0 +1,39 @@
+OOOOO----|-----XXXXXXX Focusing on the observations on the edges of each cluster, we can chose the midpoint between them 
+as threshold.
+The shortest distance between the observations and the threshold is called MARGIN.
+When we use the threshold that gives the maximum margin we use the maximum margin classifier.
+But these classifiers are super sensitive to outliers, because a left side element could move the margin really cloase to the right side.
+OOOOO-------O-|-XXXXXXX
+Any new classification which is more close to the right group than it is to the left group would be 
+put in the left group even if it would fit better to the right group.
+
+OOOOO-|-X-------XXXXXXX In this case the new observation close to the boundary would be classified in the right group, but
+it is more close to the left one.
+
+
+So, to make a threshold that is not  so sensitive to outliers we must allow misclassification
+
+OOOOO-----|X-O--XXXXXXX
+
+Choosing a threshold that allows misclassification is an example of the bias/variance tradeoff that plagues machine learning.
+If we do not allow misclassification we  are costrained to chose a threshold very sensitive to training data,LOW BIAS
+AND it performs poorly on new data HIGH VARIANCE
+iN THIS CASE
+OOOOO-----|X-O--XXXXXXX
+the threshold is less sensitive to training data, and allows misclassification  HIGHER BIAS.
+It performas better on new data LOW  VARIANCE
+
+When misclassification is allowed, the distance between observations and threshold is called soft margin.
+
+
+
+Which are the most common non-linear patterns?
+
+| Pattern Type     | Example Use Case                | Suitable Models             |
+| ---------------- | ------------------------------- | --------------------------- |
+| Circular         | Sensor range, radar             | SVM (RBF), k-NN             |
+| Spiral           | Signal processing, neuroscience | Neural networks, SVM (RBF)  |
+| XOR / Cross      | Logic gates, binary control     | Decision trees, SVM (poly)  |
+| Moon-Shaped      | Toy data, clustering demos      | SVM (RBF), ensemble methods |
+| Polynomial Trend | Economics, price prediction     | Polynomial regression       |
+| Clusters         | Customer segmentation           | k-Means, SVM, GMMs          |

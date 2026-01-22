@@ -1,0 +1,66 @@
+In both classification and regression you Look at the k nearest neighbors.
+In regression you get the evarage of the values
+In classification:
+Count how many neighbors belong to each class and you get the label with majority vote 
+Majority vote decides the final class.
+
+In regression:
+You Take the average (or weighted average) of their target values, The result is a numerical prediction.
+
+
+
+
+
+
+
+
+
+
+
+For each datapoint:
+-calculate its distance from the other datapoints
+-get the closests K points
+
+K-Nearest Neighbors (KNN) is a supervised learning algorithm used for:
+Classification: Assigning a label to a data point.
+Regression: Predicting a continuous value.
+
+
+
+Let’s say you want to predict the label or value for a new point 𝑥new
+​
+ :
+
+Compute distances:
+
+Measure the distance between 𝑥_new and all points in the training data.
+
+Common choice: Euclidean distance.
+Pick the K training points that are closest to 𝑥new
+
+Predict:
+Classification: Use majority vote among the K neighbors’ labels
+Regression: Use the average (or weighted average) of the K neighbors’ values.
+
+
+Parameter	Description
+K	          Number of neighbors to consider
+Distance	Metric (e.g., Euclidean, Manhattan, cosine)
+Weighting	Uniform (default) or distance-weighted
+
+
+Disadvantages
+Slow at prediction (must compute distances at runtime)
+Sensitive to noise and irrelevant features
+Needs feature scaling (like normalization)
+
+
+
+
+in python:
+-sequence
+-list
+-iterable
+
+
+ A 1-dimensional feature dataset

@@ -1,0 +1,8 @@
+We are trying to understand a linear pattern or slope
+The error is calculated with mean squared errors.
+
+to find the best fit line we have to find the values for the parameters of our model, the weights and bias
+that would give the minimum least squared error.
+To do that we need to calculate the derivative of mean square error, using a technique gradient descent
+
+

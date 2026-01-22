@@ -1,0 +1,38 @@
+ID      SellDate              PayMethod       PriceSold       featuresIncluded                                 BuyerAge        ProductCategory     BuyerGender     BuyerSalary       FinishPayDate          ProductColor         MonthlyInstallment     CustomerFeedback   
+0         'today'                loan          10000          ['specialequip.','delivery','morepower']            45                                                                '2027-12-03'             'Is Yellov'             100              'This product is fantastic!'
+1       '2024-03-02'             loan           40333         ['turbocharge','coating','morepower']               23                                                                '05-2030   '             'yetlow'                100              'This product is ok.'
+2       '05-12-2025'             loan           3432          ['turbocharge','coating','morepower']               67                                                                'tuesday 3th 203 0'      ' Iellow'               80               'I would have appreciated a few improvements'
+3     'tuesday 4th 2021'         card           12343         ['turbocharge','coating','morepower']               32                                                                '06-05-2028'             'Yellow 🟡 '            23               'For the price, it is ok'
+4                                cash           23323         ['turbocharge','coating','morepower']               44                                                                                         ' is yelllow '                           'I love this product!'
+5                                cash                         ['assembling','coating','morepower']                42                                                                                         'GraY'                                   'I don''t love this product.'
+6                                loan                         ['turbocharge','coating','morepower']               38                                                                '2026-04-23'             ' blacp'                123              'I''m good with the product.'
+7                                cash                         ['turbocharge','coating','morepower']               22                                                                                         'Black '                                 'I''ll recommend it to my friends'
+8                                card                         ['normalcharge','coating','morepower']              4                                                                                          'Green'                                  'I would buy it again'
+9                                loan                         ['turbocharge','coating','morepower']               55                                                                '08-02-2029'             'greeen,'               200
+10                               card                         ['normalcharge','coating','morepower']              40                                                                                         'Blue'
+11                               card                         ['installment','coating','batteries']               49                                                                                         'bluee 🔵'
+12                               loan                         ['turbocharge','coating','installment']             68                                                                '08-02-2029'             'Is Orange!'             21
+13                               loan                         ['turbocharge','coating','morepower']               43                                                                '08-02-2029'             'orange'                 80
+14                               cash                         ['normalcharge','coating','morepower']              32                                                                                         'Purplle'
+15                               card                         ['turbocharge','morepower']                         43                                                                                         '_purple'
+16                               loan                         ['turbocharge','delivery','morepower']              30                                                                '08-02-2029'             'wdite ⚪'              66
+17                               card                         ['turbocharge','coating','morepower']               35                                                                                         'çWhite'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

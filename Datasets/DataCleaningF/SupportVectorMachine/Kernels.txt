@@ -1,0 +1,35 @@
+KERNELS
+What is the RBF Kernel?
+The RBF kernel (Radial Basis Function), also known as the Gaussian kernel, is one of the most commonly used non-linear kernels in Support Vector Machines (SVMs) and other kernelized models.
+
+It allows the SVM to learn complex, non-linear boundaries between classes by implicitly mapping the data into a higher-dimensional space.
+
+The kernel's formula accepts input vectors (data points) 
+If two points   are very similar, the kernel value  is close to 1
+
+If they are far apart, the kernel value approaches 0
+
+So, RBF gives high similarity to nearby points, enabling the model to focus on local structures
+Small γ → Wide influence → Smoother decision boundary (more generalization)
+
+Large γ → Narrow influence → Sharp decision boundary (more sensitive, may overfit)
+
+When to use it:
+Your data is not linearly separable
+
+You suspect local structure (like circles, spirals)
+
+You want a good balance of performance and flexibility
+
+
+---------------------------------------------------------------------------
+
+| Kernel         | Formula / Function                       | Shape of Decision Boundary | Good For                                 | Notes                           |
+| -------------- | ---------------------------------------- | -------------------------- | ---------------------------------------- | ------------------------------- |
+| **Linear**     | $K(x, x') = x^\top x'$                   | Straight lines / planes    | Linearly separable data                  | Fast and interpretable          |
+| **Polynomial** | $K(x, x') = (x^\top x' + c)^d$           | Curved (degree-dependent)  | Moderate complexity with global patterns | Degree `d` controls flexibility |
+| **RBF**        | $K(x, x') = \exp(-\gamma \|x - x'\|^2)$  | Curved, flexible           | Non-linear data, local structure         | Most common in practice         |
+| **Sigmoid**    | $K(x, x') = \tanh(\alpha x^\top x' + c)$ | S-shaped                   | Rare — inspired by neural networks       | Can behave unpredictably        |
+
+
+

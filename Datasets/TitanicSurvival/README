@@ -1,0 +1,62 @@
+Project idea found online.
+
+Dataset: Kaggle titanic dataset  
+Focus on:
+-Load and preprocess structured data
+-Convert it into a format usable by PyTorch
+-Train a neural network on tabular features
+
+Goal:
+predict whether someone survived or not
+
+Predicting: Survived 
+
+Features:
+-Age
+-Sex
+-Passenger class
+-Fare
+-Family aboard, e
+
+Preprocessing,  data structuring:
+-Filling or dropping missing values (e.g., Age or Cabin)
+-Encoding categorical variables (like Sex, Embarked)
+-Normalizing numerical features (like Fare)
+
+Steps:
+-Create a PyTorch Dataset and DataLoader
+-Builds a neural network model
+-Trains and evaluates the model
+-Plots training loss and accuracy
+
+
+Confusion matrix: 
+A confusion matrix is a tool used in machine learning to evaluate
+ the performance of a classification model. It's a table that summarizes the model's
+  predictions by comparing them to the actual values, showing how many instances were correctly 
+  and incorrectly classified. This helps identify areas where the model struggles and can be used
+   to improve its accuracy. 
+
+
+Try:
+
+Different learning rates: 1e-3, 5e-4, 1e-4
+Batch sizes: 16, 32, 64
+Optimizers: Adam, SGD, RMSprop
+Epochs: train for 100+ with early stopping
+
+feature engineering:
+Feature engineering is the process of creating, transforming, or selecting the input 
+variables (features) that you feed into a machine learning model — with the goal of
+ improving model performance.
+ You're helping your model see the data better by reshaping it into more useful forms.
+Convert strings  to numbers
+normalize numbers
+reducing dimensionality with PCA
+one-hot encoding
+is a way to convert categorical variables (like "Male", "Female", or "Embarked: S/C/Q") into a format that machine learning models can understand — using only numbers.
+
+A simple model with well-crafted features can often outperform a deep model with raw data.
+
+
+A confusion matrix is a table used to evaluate the performance of a classification model — especially useful in binary classification 

@@ -1,0 +1,245 @@
+**DECISION TREE**
+A Decision Tree is a powerful, interpretable machine learning model used for both classification and regression tasks. It's structured like a flowchart or tree, where each internal node represents a decision based on a feature, each branch represents the outcome of that decision, and each leaf node represents a final prediction (class or value).
+
+**How It Works**
+Start at the root node.
+For each node:
+-Evaluate all possible splits using a feature and threshold.
+-Choose the split that best separates the data (using metrics like Gini index, Entropy, or MSE for regression).
+-Repeat recursively on child nodes until:
+-Data is pure (only one class), or Maximum depth or minimum sample split is reached.
+
+For CLASSIFICATION the most common criteria are:
+-gini index used in CART
+-entropy use din ID3
+-Information Gain = Entropy(parent) - Weighted average entropy(children)
+
+| Term         | Meaning                                                   |
+| ------------ | --------------------------------------------------------- |
+| **Impurity** | How mixed the classes are in a node (higher = more mixed) |
+| **Purity**   | How "pure" or homogeneous a node is (lower impurity)      |
+
+| Metric  | Value Range | Min Value (Pure Node) | Tends to split on...                    |
+| ------- | ----------- | --------------------- | --------------------------------------- |
+| Gini    | \[0, 0.5]   | 0                     | Larger class dominance                  |
+| Entropy | \[0, \~1.0] | 0                     | Slightly more sensitive to rare classes |
+
+
+
+When to Use a Decision Tree:
+When interpretability is important — trees are easy to visualize and explain.
+When you want to automatically select features and thresholds.
+When data is non-linear and doesn't satisfy parametric assumptions.
+When you want a quick baseline model or part of a more complex method (like Random Forest or Gradient Boosted Trees).
+
+**Limitations of decision trees**
+While decision trees are popular for their simplicity and interpretability, they come with some important caveats.
+One major issue is overfitting. Trees have a tendency to grow very deep, especially when there’s no restriction on depth or minimum samples. This means they can end up memorizing noise or irrelevant patterns in the training data rather than generalizing to unseen data. The result is a model that performs well on the training set but poorly on new inputs.
+Another limitation is their instability. Small changes in the dataset — such as the addition or removal of a few examples — can lead to a completely different structure of the tree. This sensitivity makes them less robust compared to some other models.
+Finally, decision trees can be biased toward features with many unique values. For example, if a feature is an identifier like a customer ID or product serial number, the tree might choose it for a split because it creates many distinct branches — even though it has no meaningful predictive power.
+
+How to Overcome Decision Tree Limitations
+Despite their drawbacks, there are several effective strategies to make decision trees more robust and generalizable.
+
+A common approach is pruning, which involves either stopping the tree early (pre-pruning) or trimming it after it's been built (post-pruning). This helps to prevent the tree from growing too complex and overfitting the data. By limiting how deep the tree can go or how small a leaf can be, we encourage it to capture only the most meaningful patterns.
+
+You can also tune hyperparameters like the maximum depth of the tree, the minimum number of samples required to split a node, or the minimum number of samples required in a leaf. These parameters act like brakes, keeping the model from becoming too specialized to the training data.
+
+When more control and accuracy are needed, it’s often better to go beyond a single tree and use an ensemble method. For example:
+
+Random Forests build many trees on slightly different data and average their outputs. This reduces variance and improves stability.
+
+Gradient Boosting Trees grow trees sequentially, each trying to correct the errors of the previous one. This can produce very powerful models, especially for complex data.
+
+In short, while decision trees are prone to overfitting and instability on their own, thoughtful tuning and ensemble techniques can transform them into highly effective tools.
+
+
+
+**BEACH VOLLEY EXAMPLE**
+
+This simple dataset was created to manually build a relatively small decision tree.
+At each step, Gini indexes are computed by hand and the resulting tree is visualized.
+
+The goal of the tree is to predict whether I would choose to play beach volleyball or not,
+based on three features: the weather, the temperature, and the number of players.
+
+```
+Weather   Temperature     Numberplayers        Play?
+Sunny        Hot                 4              Yes
+Sunny        Hot                 8              Yes
+Sunny        Hot                 3              No
+Sunny        Cold                3              No
+Sunny        Cold                4              Yes
+Sunny        Cold                8              Yes
+Sunny        Cold                9              No
+Sunny        Hot                 9              No
+Windy        Hot                 3              No
+Windy        Hot                 4              Yes
+Windy        Hot                 5              Yes
+Windy        Hot                 8              Yes
+Windy        Hot                 9              No
+Windy        Cold                4              No
+Windy        Cold                5              No
+Rainy        Cold                4              No
+Rainy        Cold                5              No
+Rainy        Hot                 2              No
+Rainy        Hot                 4              No
+Rainy        Hot                 6              Yes
+Rainy        Hot                 7              Yes
+Rainy        Hot                 8              Yes
+Rainy        Hot                 9              No
+Stormy       Hot                 4              No
+Stormy       Cold                4              No
+Stormy       Hot                 3              No
+Stormy       Hot                 5              No
+```
+
+We begin by computing the Gini index at the root node based on the full dataset:
+
+* Total samples: 27
+* Class distribution: Yes = 10, No = 17
+* Gini before split:
+
+```
+G = 1 - (10/27)^2 - (17/27)^2 = 0.466
+```
+
+### Why both groups matter in splits
+
+When evaluating a split, it’s not enough to compute Gini on just one side. We must calculate a **weighted average** of Gini indexes from both groups. This total is used to determine the **Gini gain**, which tells us how good the split is:
+
+```
+Gini Gain = Gini (parent) - Weighted Gini (children)
+```
+
+---
+
+## FIRST SPLIT: Numberplayers
+
+Possible thresholds for splitting:
+\[2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5]
+
+```
+Threshold | Left Size | Right Size | Left Proportions            | Right Proportions           | Weighted Gini
+--------- | ----------|------------|-----------------------------|-----------------------------|----------------
+   2.5    |     1     |     26     | {'No': 1.0}                 | {'No': 0.615, 'Yes': 0.385} | 0.456
+   3.5    |     5     |     22     | {'No': 1.0}                 | {'No': 0.545, 'Yes': 0.455} | 0.404
+   4.5    |    13     |     14     | {'No': 0.769, 'Yes': 0.231} | {'Yes': 0.5, 'No': 0.5}     | 0.430
+   5.5    |    17     |     10     | {'No': 0.765, 'Yes': 0.235} | {'Yes': 0.6, 'No': 0.4}     | 0.404
+   6.5    |    18     |     9      | {'No': 0.722, 'Yes': 0.278} | {'Yes': 0.556, 'No': 0.444} | 0.432
+   7.5    |    19     |     8      | {'No': 0.684, 'Yes': 0.316} | {'Yes': 0.5, 'No': 0.5}     | 0.452
+   8.5    |    23     |     4      | {'No': 0.565, 'Yes': 0.435} | {'No': 1.0}                 | 0.419
+```
+
+
+Threshold | Weighted Gini
+   2.5    | 0.456
+   3.5    | 0.404
+   4.5    | 0.430
+   5.5    | 0.404
+   6.5    | 0.432
+   7.5    | 0.452
+   8.5    | 0.419
+
+Best threshold: **3.5** or **5.5** with weighted Gini = 0.404
+Gini Gain = 0.466 - 0.404 = **0.062**
+
+---
+
+## SPLIT ON: Temperature == Hot
+
+```
+Hot Group: 18 samples (Yes: 8, No: 10)
+Gini = 1 - (8/18)^2 - (10/18)^2 = 0.494
+
+Cold Group: 9 samples (Yes: 2, No: 7)
+Gini = 1 - (2/9)^2 - (7/9)^2 = 0.346
+
+Weighted Gini = 18/27 * 0.494 + 9/27 * 0.346 = 0.444
+Gini Gain = 0.466 - 0.444 = 0.022
+```
+
+---
+
+## SPLIT ON: Weather
+
+* Sunny: Gini Gain = 0.014
+* Windy: Gini Gain = 0.014
+* Rainy: Gini Gain = 0.000
+* Stormy: Gini Gain = 0.047
+
+---
+
+## SUMMARY OF GINI GAINS AT ROOT
+
+```
+| Feature                 | Gini Gain         |
+| ----------------------- | ----------------- |
+| Numberplayers ≤ 3.5     | 0.0624 ✔ Best     |
+| Weather == Stormy       | 0.047             |
+| Temperature (Hot/Cold)  | 0.022             |
+```
+
+**Best split: Numberplayers ≤ 3.5**
+
+---
+
+## LEFT BRANCH: Numberplayers ≤ 3.5
+
+* Pure node (all "No")
+* Gini = 0
+* Logical: minimum players needed is 4
+
+---
+
+## RIGHT BRANCH: Numberplayers > 3.5
+
+* Gini = 0.496 (Yes: 45.5%, No: 54.5%)
+* Best next split: Numberplayers ≤ 8.5 (Gini = 0.404)
+* Gini Gain = 0.496 - 0.404 = 0.092
+
+Rightmost branch (> 8.5): pure "No" (Gini = 0)
+Left: (<= 8.5): 18 samples, Yes = 56%, No = 44%
+
+Next best split: Numberplayers ≤ 5.5 (Gini = 0.296)
+
+---
+
+## CONTINUE LEFT SUB-BRANCH: Numberplayers ≤ 5.5
+
+* Yes: 33%, No: 67% (Gini = 0.444)
+
+* Best split: Weather == Sunny (Gini = 0.267)
+
+* Sunny node: 2 samples (100% Yes)
+
+* Non-Sunny: 10 samples (Yes: 20%, No: 80%)
+
+Next split: Weather == Windy (Gini = 0.200)
+
+---
+
+## WINDY GROUP SPLIT
+
+* Windy: 4 samples (50% Yes, 50% No, Gini = 0.5)
+* Non-Windy: 6 samples (100% No, Gini = 0)
+
+Next best split: Temperature == Hot (Gini = 0.267)
+
+---
+
+## FINAL SPLIT
+
+Split: Numberplayers ≤ 3.5
+
+* ≤ 3.5: 1 sample ("No") — pure
+* > 3.5: 2 samples ("Yes") — pure
+
+**Final Weighted Gini = 0.000**
+
+---
+
+All branches are now pure — the tree is complete and fully classifies all data.
+
+**Conclusions**
+The goal of this experiment was to understand how a decision tree algorithm selects the feature to split on at each branch. I thought it would be interesting to perform the computations manually, so I kept the dataset small to keep the process manageable. Looking at the resulting tree now, I realize that adding a few more data points could have significantly improved its structure. I had expected the weather feature to play a more prominent role, particularly in the upper levels of the tree.

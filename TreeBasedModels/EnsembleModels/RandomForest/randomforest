@@ -1,0 +1,48 @@
+Random Forest is an ensemble learning algorithm used for both classification and regression tasks. It builds a "forest" of decision trees during training and combines their outputs to make more accurate and stable predictions.
+
+It is a collection of multiple random decision trees and it is much less sensitive to the training data.
+Randomly select rows from the original data to create the datasets.
+Each dataset will contain the same number of rows as the original, though rows might be repeated.
+A decision tree is created from every bootstrapped datasets.
+
+Forest: It's a collection of decision trees.
+Random: It introduces randomness at two key stages:
+Bootstrapping (Bagging): Each tree is trained on a random sample of the data with replacement.
+Feature selection: At each split in a tree, only a random subset of features is considered, not all.
+
+To train the tree a subset of the features will be used, not all of them.
+
+in this algorithm we perform bootstrapping and aggregation = bagging
+
+bootstrpping ensures that we are not using the same data for every tree , so our model is less sensitive to the original training data
+
+ranodm feature selection helps to reduce the correlation between the trees.
+if every feature is used, then, most of the trees will have the same decision nodes, so they will act very similarly, so the variance will increase.
+
+
+This is the core idea of Random Forest: build many weak learners (shallow trees), and let them vote to form a strong classifier.
+
+**How It Works**
+Training Phase:
+Sample data with replacement (bootstrap sampling).
+
+For each sample:
+Build a decision tree using only a random subset of features at each split.
+Repeat this to build many trees (hundreds or thousands).
+Prediction Phase:
+Classification: Each tree votes for a class; the forest picks the majority vote.
+Regression: Each tree gives a numerical value; the forest returns the average.
+
+ **Advantages**
+High accuracy compared to a single decision tree.
+Robust to overfitting, especially with enough trees.
+Handles missing values and categorical variables well.
+Feature importance can be measured easily.
+
+**Disadvantages**
+Slower prediction time (many trees to evaluate).
+Less interpretable than a single decision tree.
+Can still overfit on very noisy data, though less likely than individual trees.
+
+
+Suppose you're classifying whether an email is spam or not. Each tree in the forest might look at different keywords or sender features, and by combining the predictions of hundreds of trees, you get a very accurate and robust spam detector.

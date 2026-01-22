@@ -1,0 +1,204 @@
+📊 Core Statistical Concepts
+🟡 1. Descriptive Statistics
+Mean, Median, Mode
+
+Range, Variance, Standard Deviation
+
+Quantiles & Percentiles
+
+Skewness & Kurtosis
+
+🔵 2. Probability Basics
+Events, Outcomes, Sample Space
+    An event is a subset of the sample space. (even number, a number greater than...)
+    | Term         | Meaning                                     |
+    | ------------ | ------------------------------------------- |
+    | Sample Space | All possible outcomes (e.g., {1,2,3,4,5,6}) |
+    | Outcome      | One result (e.g., 4)                        |
+    | Event        | A subset of outcomes (e.g., {2,4,6})        |
+
+
+Independent vs. Dependent Events
+    Two events A and B are independent if:
+    The occurrence of one does not affect the probability of the other. P(A inter B) = P(A) *   P(B)
+
+    Sono dipendenti se P(A inter B) = P(A) *   P(B) non è vero
+    e P(A | B) != P(A)
+    The occurrence of one does affect the probability of the other.
+
+Conditional Probability
+    Conditional probability is the probability that event A happens given that event B has already happened.
+    Define Events:
+    A: Even number → {2, 4, 6}
+    B: Greater than 3 → {4, 5, 6}
+
+    Step 1: Find intersection:
+    A∩B={4,6}
+
+    P(A|B) = P(A intersezione B) /P(B) = 2/6  /  3/6 = 2/3
+
+
+
+
+Bayes’ Theorem
+
+    how conditional probability connects to Bayes' Theorem 
+    P(A |B) = P(B|A)* P(A) / P(B)
+    P(A): prior probability of A, not knowking about B
+    P(B|A): likelihood
+    P(A |B): posterior
+    example: 
+    Event A: number is even → {2, 4, 6}
+    Event B: number is 4 or higher → {4, 5, 6}
+    P(even) = P(<4 = 0.5)
+    P(>4|Even) = P(A intersezione B) /P(B) = 2/6  /  3/6 = 2/3
+    P(Even|>4) = 2/3 * 1/2 /  1/2 = 2/3
+
+Discrete vs. Continuous Variables
+    A continuous variable can take on any value within an interval — including decimals and fractions.
+
+🟣 3. Distributions
+    The type of variable — discrete or continuous — directly determines which probability distribution you use in statistics and machine learning.
+    | Distribution  | Use Case                                 | Example                                 |
+    | ------------- | ---------------------------------------- | --------------------------------------- |
+    | **Bernoulli** | Single yes/no (0/1) event                | Coin toss: heads (1), tails (0)         |
+    | **Binomial**  | Number of successes in `n` trials        | Toss 10 coins, count how many are heads |
+    | **Poisson**   | Count of rare events in fixed time/space | Emails per hour, car accidents per day  |
+    | **Geometric** | Trials until first success               | First heads after repeated tosses       |
+
+    Continous 
+    | Distribution          | Use Case                                    | Example                           |
+    | --------------------- | ------------------------------------------- | --------------------------------- |
+    | **Normal (Gaussian)** | Naturally occurring variables with symmetry | Heights, test scores, temperature |
+    | **Uniform**           | All values equally likely in an interval    | Random number between 0 and 1     |
+    | **Exponential**       | Time between rare events                    | Time between bus arrivals         |
+    | **Beta**              | Probabilities and proportions               | Beliefs in Bayesian modeling      |
+
+    | Variable Type     | Example         | Distribution Type | Suggested Distribution |
+    | ----------------- | --------------- | ----------------- | ---------------------- |
+    | Discrete          | Dice roll       | Discrete          | Uniform or Binomial    |
+    | Discrete          | Emails per hour | Discrete          | Poisson                |
+    | Continuous        | Height (cm)     | Continuous        | Normal (Gaussian)      |
+    | Continuous        | Time to failure | Continuous        | Exponential            |
+    | Continuous \[0–1] | Probability     | Continuous        | Beta                   |
+
+
+
+Normal (Gaussian)
+
+Binomial, Poisson, Bernoulli
+
+Uniform
+
+Exponential
+
+How to identify which distribution fits
+
+    What Does "Fitting a Distribution" Mean?
+    It means:
+
+    Estimating parameters (like mean, variance, shape) of a known distribution from your data, and testing how well that distribution explains your data.
+     Evaluate "Best Fit"
+    You can compare:
+    Visual match of histogram + fitted curve
+
+    Goodness-of-fit tests:
+    scipy.stats.kstest() (Kolmogorov-Smirnov Test)
+    scipy.stats.chisquare() (for discrete data)
+    Likelihood-based metrics: AIC, BIC (via libraries like statsmodels or fitter)
+
+
+
+
+
+🔴 4. Inferential Statistics
+Inferential stats allow you to:
+-Estimate population parameters (e.g., mean, proportion)
+-Test hypotheses
+-Compute confidence intervals
+-Perform regression, ANOVA, etc.
+
+DEscriptive statistics: summarizes data, mean height of persons
+Inferential:  make prediction or generalization estimate evarage height based on the samples
+
+Population vs. Sample
+Population: The entire group you want to study or draw conclusions about
+Sample: A subset of the population that is actually measured.
+ Why Do We Use Samples?
+Because we often can’t measure the entire population due to time, cost, or practicality.
+
+ Inferential Statistics = Reasoning from Sample → Population
+
+ | Concept                 | Meaning                                                 |
+| ----------------------- | ------------------------------------------------------- |
+| **Parameter**           | A value that describes a population (e.g., true mean μ) |
+| **Statistic**           | A value calculated from a sample (e.g., sample mean x̄) |
+| **Confidence Interval** | A range likely to contain the true population value     |
+| **Hypothesis Testing**  | Procedure to decide if sample evidence supports a claim |
+| **P-value**             | Probability of observing the data if the null is true   |
+
+
+Sampling distributions
+
+Central Limit Theorem
+Central Limit Theorem (CLT): Definition
+The Central Limit Theorem states that if you take many random samples from any population (with a finite mean and variance), then the distribution of the sample means will tend to be approximately normal, regardless of the shape of the population, as the sample size becomes large.
+The population can have any distribution: skewed, uniform, or weird.
+
+But the distribution of the sample means (if sample size is large enough, usually will:
+Look like a normal distribution
+Be centered around the true population mean 𝜇 
+Have a smaller spread (standard error)
+
+Confidence Intervals
+A confidence interval gives a range of plausible values for a population parameter (like the mean), based on a sample.
+It reflects uncertainty due to sampling.
+Imagine you survey 100 people and find an average height of 170 cm, with a 95% confidence interval of [167, 173].
+This means:
+“We’re 95% confident that the true population mean height is between 167 cm and 173 cm.”
+⚠️ It does not mean there's a 95% chance the population mean is in that interval — rather, 95% of such intervals built from repeated samples will contain the true mean.
+
+Hypothesis Testing
+
+Null vs. Alternative
+
+p-value, significance level
+
+Type I & Type II errors
+
+🟢 5. Correlation and Regression
+Covariance vs. Correlation
+ are key concepts in statistics for understanding the relationship between two variables
+ Covariance measures how two variables change together.
+If both increase together → covariance is positive
+If one increases while the other decreases → negative
+If no consistent pattern → close to zero
+
+Correlation measures both the strength and direction of a linear relationship between two variables. It is the scaled version of covariance.
+Values range from −1 to +1
++1: Perfect positive linear relationship
+−1: Perfect negative linear relationship
+0: No linear relationship
+
+Simple Linear Regression
+
+Multiple Regression
+
+R² (Coefficient of Determination)
+
+Residuals and Goodness of Fit
+
+🟠 6. Statistical Tests
+t-test (1-sample, 2-sample, paired)
+
+Chi-squared test
+
+ANOVA
+
+Mann-Whitney U / Wilcoxon
+
+⚫ 7. Bayesian Statistics
+Priors, Likelihood, Posterior
+
+Bayesian Inference vs. Frequentist
+

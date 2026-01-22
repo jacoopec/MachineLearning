@@ -1,0 +1,26 @@
+The inability for a ML method to catch the true relationship is called bias.
+If the model  can perfectly follow data training points it has very little bias.
+THe problem raises with data not present during training.
+In this case, the error increases a lot.
+Variance is the difference between datasets.
+With a high variance, performances might vary depending on the dataset.
+A tradeoff between a simple and a complex model must be found.
+methods to find this kind of model are: regularization, boosting and bagging.
+
+
+
+What is R-squared in Data Analysis?
+R-squared (also written as R², or coefficient of determination) is a metric that tells you how well your regression model explains the variability of the target (dependent) variable.
+
+R² = "How much of the change in Y is explained by X?"
+
+R² = 1.0 → Perfect prediction
+R² = 0.0 → Model explains none of the variance
+R² < 0 → Model is worse than just predicting the mean
+
+R2 = 1 -  (sum of squares of residual, errors)/(total sum of suqares, variance from the mean)
+
+use data to predict something is machine learning
+
+In ML you are using data features to predict, to model some output
+

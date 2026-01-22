@@ -1,0 +1,9 @@
+          Outlook
+         /   |    \
+      Sunny Overcast Rainy
+       /       |       \
+  Temperature   Yes    Temperature
+     /   \              /     \
+   Hot  Mild         Hot    Mild/Cool
+   No    No           No       Yes
+

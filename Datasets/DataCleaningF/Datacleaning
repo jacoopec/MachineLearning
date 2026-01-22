@@ -1,0 +1,301 @@
+DATA CLEANING 
+ 
+data cleaning and preprocessing are critical first steps in any machine learning or data science project. In real-world datasets, raw data is rarely clean. It might be missing, noisy, inconsistent, or irrelevant.
+
+Data cleaning (also said cleansing or scrubbing) is the process of:
+Detecting and fixing or removing errors
+Filling in or removing missing values
+Handling outliers
+Correcting inconsistent formatting
+Ensuring data is in a usable and structured format for analysis or machine learning
+
+Why Is Data Cleaning So Important?
+Dirty data leads to biased or incorrect models.
+Machine learning models assume data is numeric, clean, and meaningful.
+Many algorithms like KNN, SVM or neural nets are sensitive to scale, outliers, or missing data.
+
+How a typical ML Preprocessing Pipeline looks like:
+-Inspect the data (shape, nulls, unique values)
+-Clean data (remove, impute, standardize)
+-Feature engineering (create better representations)
+-Split data into train/test sets
+-Scale / normalize
+-Encode categorical features
+-Feed to the model
+
+| Task                               | Example or Method                                                       |
+| ---------------------------------- | ----------------------------------------------------------------------- |
+| **Handling Missing Values**        | Impute with mean/median/mode, drop rows/columns, predictive imputation  |
+| **Removing Duplicates**            | `df.drop_duplicates()` in pandas                                        |
+| **Fixing Inconsistent Labels**     | Normalize `"yes"`, `"Yes"`, `"Y"` to `"Yes"`                            |
+| **Correcting Data Types**          | Convert strings to dates or numbers, e.g. `pd.to_datetime()`            |
+| **Removing Outliers**              | Z-score, IQR method, or domain rules                                    |
+| **Normalizing or Scaling**         | `StandardScaler`, `MinMaxScaler`, log transform                         |
+| **Encoding Categorical Variables** | Label Encoding, One-Hot Encoding                                        |
+| **Text Cleaning**                  | Lowercasing, stopword removal, stemming/lemmatization                   |
+| **Feature Engineering**            | Creating new variables from existing ones (e.g. `age` from `birthdate`) |
+
+#Why Data Types Matter
+Categorical data must be encoded (e.g., strings → numbers)
+Dates must be converted to meaningful features (e.g., duration, day of week)
+Text must be vectorized (e.g., TF-IDF)
+ML models cannot handle strings or mixed types
+
+------------------------------------------------------
+SCALING / NORMALIZATION
+
+feature scaling using a technique called Standardization (Z-score normalization)
+This line standardizes the Age and Salary columns by transforming their values to have:
+Mean = 0
+Standard deviation = 1
+
+Why is this important?
+Some ML models are scale-sensitive:
+
+Algorithms like SVM, KNN, neural networks, logistic regression can behave badly if features have very different scales (e.g., age in years vs. salary in dollars).
+
+Prevents dominance:
+Features like "Salary" might dominate smaller values like "Age", skewing the model’s learning.
+Improves convergence:
+Gradient descent (used in many models) converges faster when features are normalized.
+
+StandardScaler() computes mean and std from the training data only and applies the same transformation to test data.
+
+If you use a pipeline, scaling should happen after splitting into train/test, to prevent data leakage.
+
+max-min scaling 
+(x - xmin)/(xmax - xmin)
+Scales values to a fixed range, typically [0, 1]
+
+Robust scaling
+Max ab scaling Scales data by the maximum absolute value, so all values are in [-1, 1]
+
+
+------------------------------------------------------
+MISSING VALUES 
+
+| Factor                 | Recommended Approach           |
+| ---------------------- | ------------------------------ |
+| Few missing values     | Drop rows or columns           |
+| Many missing in column | Impute or drop the column      |
+| Missing at random      | Impute with mean/median/mode   |
+| Not missing at random  | Use domain knowledge or models |
+| Categorical data       | Mode or "Unknown" placeholder  |
+
+
+------------------------------------------------------
+FIXING INCONSISTENT LABELS
+Fixing inconsistent labels is a crucial part of data cleaning. Inconsistent labels can silently sabotage your machine learning model by creating duplicate classes, misleading statistics, or data leakage.
+
+| Inconsistent                  | Intended Label |
+| ----------------------------- | -------------- |
+| `"Yes"`, `"yes"`, `"YES"`     | `"Yes"`        |
+| `"no"`, `"No "`, `" NO"`      | `"No"`         |
+| `"N/A"`, `"na"`, `""`, `None` | Missing        |
+
+#sTANDARDIZE CASING
+df['column'] = df['column'].str.strip().str.lower()
+df['column'] = df['column'].str.strip().str.title()
+
+#Removing extra spaces
+df['column'] = df['column'].str.strip()
+
+#Map Variations to Canonical Labels
+Use .replace() to group and fix known variants:
+Use df['column'] = df['column'].replace({
+    'yes': 'Yes',
+    'YES': 'Yes',
+    'Y': 'Yes',
+    'no': 'No',
+    'NO': 'No',
+    'N': 'No'
+})
+
+convert to category or numeric 
+df['column'] = df['column'].astype('category')
+# or encode
+df['column'] = df['column'].map({'No': 0, 'Yes': 1})
+
+------------------------------------------------------
+#CORRECTING DATA TYPES
+Inspect column types 
+print(df.dtypes)
+
+#Convert string to categories 
+df['Gender'] = df['Gender'].astype('category')
+
+#Convert strings to  numbers 
+df['Age'] = pd.to_numeric(df['Age'], errors='coerce')
+
+#Convert Dates to DateTime Format
+df['SignupDate'] = pd.to_datetime(df['SignupDate'], errors='coerce')
+df['SignupMonth'] = df['SignupDate'].dt.month
+df['SignupWeekday'] = df['SignupDate'].dt.dayofweek
+df['SignupYear'] = df['SignupDate'].dt.year
+
+#Convert boolean to strins 
+df['Purchased'] = df['Purchased'].map({'Yes': 1, 'No': 0})
+
+Final Check for ML Compatibility
+Ensure:
+No object (string) types unless it's text you plan to vectorize
+No missing values in features (impute or drop)
+All categorical features are encoded
+All numerical columns are of type int or float
+
+------------------------------------------------------
+
+Removing or handling outliers is a key step in data cleaning — especially if you're using models that are sensitive to extreme values, like linear regression or SVMs.
+
+An outlier is a data point that lies far outside the normal range of your dataset — it can be due to:
+Errors in data entry, Measurement noise, Genuinely rare but valid cases
+
+ Techniques to Detect & Remove Outliers are:
+
+-Z-Score Method (Standard Deviation Rule)
+Assumes data is normally distributed.
+Outliers are points that are far from the mean:
+z = (x-u)/sigma
+
+- IQR Method (Interquartile Range)
+
+- Percentile Capping / Winsorization
+Replace extreme values with a capped value.
+Useful for reducing effect without dropping data.
+
+-. Isolation Forest (Machine Learning-Based)
+Unsupervised algorithm that isolates outliers by building trees.
+
+
+Choose a method based on:
+| Data Type           | Recommended Method       |
+| ------------------- | ------------------------ |
+| Normal distribution | Z-score, IQR             |
+| Non-normal          | IQR, Percentile capping  |
+| Multivariate        | Isolation Forest, DBSCAN |
+| Small dataset       | Visual + IQR             |
+
+------------------------------------------------------
+ENCODING CATEGORICAL VARIABLES 
+
+Encoding categorical variables is essential for machine learning models, which typically cannot work with raw text or labels. The right encoding method depends on the nature of your categorical data — whether it's nominal (no order) or ordinal (ordered).
+
+| Categorical Input             | Machine Learning Needs               |
+| ----------------------------- | ------------------------------------ |
+| `'Red'`, `'Blue'`             | Numeric values (e.g., `0`, `1`, ...) |
+| `'Low'`, `'Medium'`, `'High'` | Ordered numeric encoding             |
+| `'Yes'`, `'No'`               | Binary encoding                      |
+
+-Label encoding
+Each category is assigned a unique integer.
+
+--One-Hot Encoding
+Creates binary columns for each category.
+| Color\_Red | Color\_Blue | Color\_Green |
+| ---------- | ----------- | ------------ |
+| 1          | 0           | 0            |
+| 0          | 1           | 0            |
+| 0          | 0           | 1            |
+
+-Ordinal Encoding: Manually map categories to ordered numbers.
+-Binary Encoding: Encodes categories into binary form and splits them into columns.
+-Frequency Encoding: Replace category with its frequency in the dataset.
+- Target / Mean Encoding: Replace category with the mean target value for that category.
+
+Choosing the right encoding 
+| Feature Type        | Recommended Encoding      |
+| ------------------- | ------------------------- |
+| Nominal (unordered) | One-Hot, Frequency        |
+| Ordinal (ordered)   | Label, Ordinal            |
+| High cardinality    | Binary, Frequency, Target |
+| Tree-based models   | Any (Label works well)    |
+| Linear models       | One-Hot, Target Encoding  |
+
+------------------------------------------------------
+#TEXT CLEANING
+
+ Text cleaning is an essential preprocessing step in NLP (Natural Language Processing) — it helps reduce noise and improve the quality of the input for downstream tasks like classification, sentiment analysis, and topic modeling.
+
+ -lowercasing text = text.lower()
+ -removing punctuation  text = text.translate(str.maketrans('', '', string.punctuation))
+-removing digits if irrelevant text = re.sub(r'\d+', '', text)
+-removing white spaces:text = re.sub(r'\s+', ' ', text).strip()
+-tokenization: Split the text into individual words or tokens: tokens = word_tokenize(text)
+-stopword removal. Removing words like 'is' and 'the' that don't carry a usefull meaning
+ from nltk.corpus import stopwords
+stop_words = set(stopwords.words('english'))
+filtered = [word for word in tokens if word not in stop_words]
+
+-Stemming, reduce words to their root forms.
+from nltk.stem import PorterStemmer
+stemmer = PorterStemmer()
+stemmed = [stemmer.stem(word) for word in filtered]
+
+-Lemmatization is more advanced than Stemming and it uses vocabulary + grammar
+
+
+------------------------------------------------------
+
+FEATURE ENGINEERING
+
+Feature engineering is one of the most powerful tools in a data scientist’s toolkit. It involves creating, transforming, or selecting features to help a machine learning model learn better patterns from the data.
+
+Here’s a comprehensive breakdown of techniques and methods used in feature engineering:
+
+- Feature Creation: Generate new variables from existing ones.
+Date decomposition: From timestamp → year, month, day, weekday
+Text length: text_length = len(text)
+Interaction terms: new_feature = feature1 * feature2
+Binning: Convert a continuous value into categories (e.g., Age → Young, Adult, Old)
+
+-Feature Transformation: Convert features into forms that better suit the model.
+Log transformation (for skewed data)
+Standardization / Normalization
+Box-Cox / Yeo-Johnson transformation
+Encoding categorical features (Label, One-Hot, Ordinal)
+
+-Handling missing values
+Imputation (mean, median, mode, interpolation)
+Indicator variables: Add a binary column indicating if a value was missing
+
+
+-Feature Selection
+Choose only the most relevant features for training.
+Methods:
+Univariate statistics (e.g., ANOVA, chi-squared test)
+Model-based (e.g., feature importance from Random Forests, Lasso)
+Recursive Feature Elimination (RFE)
+Correlation analysis to remove multicollinearity
+
+-Dimensionality reduction 
+Dimensionality Reduction
+Reduce the number of features while preserving the information.
+Techniques:
+Principal Component Analysis (PCA)
+t-SNE / UMAP (for visualization)
+Autoencoders (deep learning)
+
+-Domain-Specific Feature Design
+Based on knowledge of the problem domain:
+In finance: Moving averages, returns, volatility
+In NLP: Word count, TF-IDF, sentiment scores
+In images: Edge detection, histograms, pixel intensities
+
+-Target Encoding / Mean Encoding: Replace a category with the mean of the target variable for that category.
+
+- Polynomial Features: Add interaction or higher-degree terms to capture non-linear patterns.
+
+-Discretization / Quantization: Convert continuous variables into discrete bins:
+
+
+SUMMARY 
+| Technique Type           | Methods & Tools                          |
+| ------------------------ | ---------------------------------------- |
+| Creation                 | Derived features, text stats, date parts |
+| Transformation           | Log, standardization, encoding           |
+| Selection                | Correlation, model-based, recursive      |
+| Dimensionality Reduction | PCA, t-SNE, Autoencoders                 |
+| Handling Missing Data    | Imputation, missing flags                |
+| Time Series              | Lags, rolling means, difference features |
+| NLP Features             | Word count, sentiment, n-grams, TF-IDF   |
+| Domain Features          | Domain-specific formulas or scores       |
