@@ -1,0 +1,101 @@
+PersonId,ProdChoice,HomeTown,Age,Sex,Children,InstructionLevel,Height,Weight,Interested
+1,A,Chicago,34,M,0,HighSchool,189,89,yes
+2,C,Chicago,25,F,4,Bachelor,169,61,no
+3,B,Los Angeles,20,F,2,Bachelor,150,66,yes
+4,D,Los Angeles,37,F,5,SomeCollege,174,56,no
+5,C,Denver,20,M,2,HighSchool,180,52,yes
+6,C,New York,71,M,0,HighSchool,183,108,no
+7,A,Miami,26,Other,4,Bachelor,174,63,yes
+8,B,Atlanta,34,Other,4,SomeCollege,170,88,no
+9,B,Atlanta,74,Other,2,SomeCollege,179,86,yes
+10,A,Atlanta,23,M,1,Bachelor,174,98,no
+11,B,Denver,45,F,2,HighSchool,161,63,yes
+12,D,Boston,54,M,0,HighSchool,170,94,no
+13,A,Miami,76,F,5,Bachelor,174,87,yes
+14,A,Austin,70,Other,5,PhD,171,126,no
+15,C,Los Angeles,35,Other,0,Master,174,68,yes
+16,D,Austin,36,M,1,Bachelor,174,84,no
+17,A,Los Angeles,54,M,5,Bachelor,186,89,yes
+18,B,Atlanta,55,M,4,SomeCollege,193,85,no
+19,A,Boston,68,Other,2,HighSchool,178,79,yes
+20,A,Boston,26,F,5,Bachelor,161,80,no
+21,D,New York,42,M,3,Master,175,75,yes
+22,C,Chicago,29,F,1,SomeCollege,165,60,yes
+23,B,Miami,50,M,0,Bachelor,182,90,no
+24,A,Denver,31,F,2,HighSchool,158,55,yes
+25,C,Austin,65,Other,4,PhD,172,82,no
+26,D,Atlanta,22,M,0,Bachelor,184,78,yes
+27,A,Los Angeles,48,F,3,Master,170,70,yes
+28,B,Boston,39,M,1,SomeCollege,179,85,no
+29,C,Chicago,57,F,5,HighSchool,162,62,yes
+30,D,New York,27,M,2,Bachelor,177,80,yes
+31,A,Miami,63,Other,0,PhD,168,68,no
+32,B,Denver,41,F,4,Master,171,74,yes
+33,C,Atlanta,33,M,3,SomeCollege,185,92,no
+34,D,Boston,19,F,1,HighSchool,155,50,yes
+35,A,Los Angeles,72,M,5,Bachelor,181,95,yes
+36,B,Chicago,46,F,2,Master,167,65,no
+37,C,Austin,25,M,0,SomeCollege,176,77,yes
+38,D,Miami,54,Other,4,PhD,169,71,no
+39,A,New York,38,F,3,Bachelor,163,59,yes
+40,B,Denver,60,M,1,HighSchool,188,88,yes
+41,C,Atlanta,30,F,2,Master,159,57,no
+42,D,Los Angeles,51,M,5,SomeCollege,173,83,yes
+43,A,Boston,44,Other,0,Bachelor,180,86,no
+44,B,Chicago,23,F,4,PhD,166,64,yes
+45,C,Miami,67,M,3,HighSchool,178,81,yes
+46,D,New York,35,F,1,Master,164,61,no
+47,A,Denver,49,M,2,SomeCollege,182,87,yes
+48,B,Austin,28,Other,5,Bachelor,170,72,no
+49,C,Los Angeles,55,F,0,PhD,161,58,yes
+50,D,Atlanta,40,M,4,HighSchool,186,91,yes
+51,A,Boston,62,F,3,Master,168,66,no
+52,B,Chicago,21,M,1,SomeCollege,175,76,yes
+53,C,Miami,47,Other,2,Bachelor,179,84,no
+54,D,New York,33,F,5,PhD,157,53,yes
+55,A,Denver,69,M,0,HighSchool,183,89,yes
+56,B,Los Angeles,26,F,4,Master,172,69,no
+57,C,Austin,52,M,3,SomeCollege,177,82,yes
+58,D,Atlanta,37,Other,1,Bachelor,165,63,yes
+59,A,Chicago,58,F,2,PhD,160,56,no
+60,B,Miami,24,M,5,HighSchool,190,96,yes
+61,C,Boston,45,F,0,Master,166,62,yes
+62,D,New York,71,Other,4,SomeCollege,174,80,no
+63,A,Denver,32,M,3,Bachelor,181,85,yes
+64,B,Los Angeles,50,F,1,PhD,169,67,no
+65,C,Atlanta,39,M,2,HighSchool,176,79,yes
+66,D,Chicago,64,F,5,Master,163,60,yes
+67,A,Miami,28,Other,0,SomeCollege,187,93,no
+68,B,Austin,56,M,4,Bachelor,171,75,yes
+69,C,New York,43,F,3,PhD,158,54,yes
+70,D,Boston,20,M,1,HighSchool,184,88,no
+71,A,Los Angeles,61,F,2,Master,167,65,yes
+72,B,Denver,36,M,5,SomeCollege,178,82,yes
+73,C,Atlanta,53,Other,0,Bachelor,173,78,no
+74,D,Chicago,27,F,4,PhD,162,59,yes
+75,A,Miami,48,M,3,HighSchool,189,94,yes
+76,B,New York,70,F,1,Master,164,61,no
+77,C,Boston,34,M,2,SomeCollege,180,86,yes
+78,D,Austin,59,Other,5,Bachelor,170,73,no
+79,A,Los Angeles,25,F,0,PhD,156,52,yes
+80,B,Denver,46,M,4,HighSchool,185,90,yes
+81,C,Chicago,31,F,3,Master,169,66,no
+82,D,Miami,67,M,1,SomeCollege,177,81,yes
+83,A,Atlanta,42,Other,2,Bachelor,172,77,yes
+84,B,New York,19,F,5,PhD,159,55,no
+85,C,Boston,54,M,0,HighSchool,191,97,yes
+86,D,Los Angeles,39,F,4,Master,165,63,yes
+87,A,Denver,60,M,3,SomeCollege,176,80,no
+88,B,Chicago,29,Other,1,Bachelor,182,87,yes
+89,C,Austin,51,F,2,PhD,161,58,yes
+90,D,Miami,35,M,5,HighSchool,168,72,no
+91,A,Atlanta,66,F,0,Master,174,79,yes
+92,B,New York,22,M,4,SomeCollege,179,84,yes
+93,C,Boston,47,Other,3,Bachelor,171,76,no
+94,D,Los Angeles,73,F,1,PhD,157,54,yes
+95,A,Denver,40,M,2,HighSchool,186,92,yes
+96,B,Chicago,57,F,5,Master,163,60,no
+97,C,Miami,26,M,0,SomeCollege,183,88,yes
+98,D,Atlanta,49,Other,4,Bachelor,175,81,yes
+99,A,New York,32,F,3,PhD,160,57,no
+100,B,Boston,64,M,1,HighSchool,188,95,yes
