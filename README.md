@@ -91,11 +91,6 @@ The objective is to understand how configuration changes affect performance.
 
 ---
 
-## Notes
-
-- Code clarity and correctness are prioritized over optimization
-- Datasets are intentionally small unless otherwise specified
-- Results are meant for **analysis and learning**, not benchmarking
 
 ---
 

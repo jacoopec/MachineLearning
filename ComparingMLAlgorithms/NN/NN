@@ -1,0 +1,72 @@
+The bias is the amount of assumptions that the model is making against a certain problem you are trying to frame. 
+one model with a very high bias is linear regression, because it assumes that data have a linear distribution.
+WHen a model has high bias it underfits.
+The variance is the sensitivity of the model. How much the output would have changed if you changed the data?
+A model with high variance is dependent on the subset of real world data you are training it on.
+If the subset of data change, the output change a lot, and it shouldn't 
+what do we mean by subset of data?
+A model with high variance is the decision tree. If you don't put a limit to its growth,
+it will branch up as far as possible to fit all and every single data point.
+On the training set it might give good results, but in the real world it would fail to perform.
+
+A solution to underfitting might be to train the model more if it has not been trained enough, so more training might help it 
+to converge to a solution.
+
+If the model is simple and the problem is high bias with underfitting, increasing the complexity of the model might be the good choice.
+Or change architecture directly.
+
+If the model is overfitting, introducing more data might be useful, as it would increase data diversity so that the model doesn't closely
+resemble all the data points anymore.
+
+Regularization is a good solution to overfitting, because it decrease the complexity, the flexibility of the model so that it 
+less capable of following all the datapoints, and so, generalize better. 
+
+
+
+Is it a neural network capable  of  solving a linear regression?
+
+Yes — a neural network can absolutely solve a linear regression problem, and in fact, it can learn exactly the same solution as ordinary linear regression if it's configured correctly.
+
+A neural network with:
+
+No hidden layers
+
+Linear activation (or no activation at all)
+
+A single output neuron
+
+...is mathematically identical to linear regression.
+
+Polynomial Regression
+You create non-linear combinations of a single feature (or multiple features) by raising them to powers.
+Polynomial Regression
+You create non-linear combinations of a single feature (or multiple features) by raising them to powers.
+
+
+Adding Multiple Features (Multivariate Regression)
+You add independent features, each representing a different aspect of the data.
+Example (3 features: x₁, x₂, x₃):
+text
+Copy
+Edit
+y = w0 + w1·x₁ + w2·x₂ + w3·x₃
+Each xᵢ is a separate input variable (e.g., age, income, mileage).
+You model a linear relationship across multiple dimensions.
+🧠 Used when:
+You have many independent variables affecting the outcome
+You want a multi-feature input space
+
+Both are linear in parameters
+
+You can add both multiple features and their powers for polynomial multivariate regression.
+y = w0 + w1·x₁ + w2·x₁² + w3·x₂ + w4·x₂² + w5·x₁·x₂ + ...
+
+
+
+
+
+
+Dropout is more effective when:
+The model is larger or deeper
+
+Comparing test and validation loss lets you detect overfitting (low validation loss, but high test loss) and underfitting (both high).

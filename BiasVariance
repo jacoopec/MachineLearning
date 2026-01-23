@@ -1,0 +1,7 @@
+The bias is the difference between the mean of the prediction and the mean of the actual values.
+variance is the spread of the predictions.
+high bias -> underfitting
+high variance -> overfitting
+
+solutions to overfitting: use a different model, use regularization, introduce more  data
+solutions to underfitting: try a different model, increase complexity(model's  complexity is not enough to understand data), train more
