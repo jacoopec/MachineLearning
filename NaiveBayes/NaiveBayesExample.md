@@ -50,6 +50,7 @@ Decision boundaries are simplistic
 
 
 Classify an email as Spam or Not Spam based on two words: cheap and meeting
+Considering a total of 100 emails:
 
 | Class    | Emails | cheap appears | meeting appears |
 | -------- | ------ | ------------- | --------------- |
