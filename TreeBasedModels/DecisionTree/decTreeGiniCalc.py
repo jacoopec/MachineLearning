@@ -1,3 +1,5 @@
+#Una prova per calcolare l'indice Gini
+
 data = {
     "Sunny":          [0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1],
     "Windy":          [0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1],

@@ -1,3 +1,5 @@
+#Simple decision tree for visualization using 2 features
+
 import matplotlib.pyplot as plt
 
 data = {
