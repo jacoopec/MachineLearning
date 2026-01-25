@@ -1,5 +1,5 @@
 The Naive Bayes classifier is a probabilistic classification algorithm based on Bayes’ theorem.
-It’s called naive because it assumes that features are conditionally independent given the class—an assumption that is often false, but surprisingly effective in practice.
+It’s called naive because it assumes that features are conditionally independent given the class,an assumption that is often false, but surprisingly effective in practice.
 
 It’s widely used for text classification, spam detection, and other high-dimensional problems.
 
@@ -69,36 +69,5 @@ So, classifying a new email which contains "cheap" and "meeting":
 spam score = 0.4 * 0.75 * 0.05 = 0.015
 not spam score = 0.6 * 0.083 * 0.417 = 0.021
 
-Why Naive Bayes and Logistic Regression can behave similarly
-Naive Bayes is generative
-Logistic regression is discriminative
 
-
-Naive Bayes → linear classifier in log space
-
-Logistic regression → linear classifier in log-odds space
-
-
-Naive Bayes and logistic regression often draw the same line, but they arrive there for very different reasons.
-
-Naive bayes fails when there are strongyl correlated features
-like credit_card_used and online_payment. These are almost the same signal.
-So Evidence is double-counted and Confidence becomes wildly wrong
-
-
-
-when Naive Bayes adds up all its independent pieces of evidence and compares the two worlds, it ends up computing something that looks like a weighted sum of features. That weighted sum is exactly the same mathematical shape logistic regression uses internally.
-
-The big picture intuition
-
-Think of it this way:
-
-Naive Bayes tells a simple story about how data is generated.
-When that story is roughly true, it’s fast, effective, and surprisingly strong.
-
-Logistic regression doesn’t tell a story—it just draws the best possible line.
-It’s more flexible, more cautious, and more reliable when data is messy.
-
-
-Naive Bayes adds up independent pieces of evidence in log space, and logistic regression adds up weighted features in log-odds space. Once you take logarithms, both models reduce classification to the same basic operation: summing feature contributions and checking which side of zero you land on. That’s why they often behave alike—even though one tells a story about data generation and the other draws a boundary directly.
 

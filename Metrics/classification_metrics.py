@@ -1,5 +1,5 @@
 
-def accuracy(y_evaluated,y_true):
+def compute_metrics(y_evaluated,y_true):
     
     count_0_0 = 0
     count_1_1 = 0
@@ -26,4 +26,4 @@ def accuracy(y_evaluated,y_true):
 y_evaluated = [0,1,0,1,0,0,0,1,0,0,1,0,1,0,1,0,1,0,1,0,1,1]
 y_true      = [0,1,0,1,0,0,0,1,0,0,1,1,1,0,0,0,1,1,1,1,1,1]
 
-print(accuracy(y_evaluated,y_true))
+print("Accuracy, precision,recall, F1",compute_metrics(y_evaluated,y_true))
