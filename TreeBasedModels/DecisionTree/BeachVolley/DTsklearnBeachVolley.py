@@ -47,7 +47,7 @@ pred = model.predict([[
 
 
 
-clf = DecisionTree(max_depth=10)
+clf = DecisionTreeClassifier(max_depth=10)
 clf.fit(X_train, y_train)
 
 predictions = clf.predict(X_test)

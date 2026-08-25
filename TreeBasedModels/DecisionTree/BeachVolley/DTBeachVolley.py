@@ -89,7 +89,7 @@ def compute_gini(df, target):
     }
 
 df = pd.read_csv(
-    "beachvolley_data_augmented.txt",
+    "beachvolley_data.txt",
     sep=r"\s+",
     engine="python"
 )

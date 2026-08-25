@@ -2,7 +2,7 @@ import torch
 from torchvision import transforms
 from PIL import Image
 import os
-from train import SimpleCNN
+from DataExplorClean.MLDataProjects.DigitPrediction.MLPart.train import SimpleCNN
 
 model_path = './model.pth'
 num_classes = 3

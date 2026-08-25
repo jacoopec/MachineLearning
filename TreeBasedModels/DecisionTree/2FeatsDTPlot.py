@@ -25,7 +25,7 @@ def recursive_best_splits(data, splits, min_samples=2):
     if split["feature"] is None:
         return
 
-    feature = split["feature"]
+    feature   = split["feature"]
     threshold = split["threshold"]
 
     # store split for later plotting
@@ -35,7 +35,7 @@ def recursive_best_splits(data, splits, min_samples=2):
     })
 
     # split data
-    left = {k: [] for k in data if k != feature}
+    left  = {k: [] for k in data if k != feature}
     right = {k: [] for k in data if k != feature}
 
     for i in range(len(y)):

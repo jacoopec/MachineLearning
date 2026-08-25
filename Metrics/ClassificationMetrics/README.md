@@ -45,6 +45,8 @@ $$Precision = TP / (TP + FP)$$
 
 Use when false positives are costly (e.g. spam detection)
 
+
+
 ---
 
 ### Recall (Sensitivity)
@@ -54,6 +56,9 @@ Measures how many actual positives are correctly identified.
 $$Recall = TP / (TP + FN)$$
 
 Use when false negatives are costly (e.g. medical diagnosis)
+
+importanza ai positivi, devo cercare di prenderli tutti.
+Più li riesco ad individuare tutti più sarà bassa.
 
 ---
 

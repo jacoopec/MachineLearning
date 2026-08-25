@@ -243,3 +243,225 @@ All branches are now pure — the tree is complete and fully classifies all data
 
 **Conclusions**
 The goal of this experiment was to understand how a decision tree algorithm selects the feature to split on at each branch. I thought it would be interesting to perform the computations manually, so I kept the dataset small to keep the process manageable. Looking at the resulting tree now, I realize that adding a few more data points could have significantly improved its structure. I had expected the weather feature to play a more prominent role, particularly in the upper levels of the tree.
+
+---
+The terms decision tree and regression tree refer to two types of tree-based models, and the key difference lies in the type of output they predict:
+
+Decision Tree (for Classification): Predicts a categorical class label by learning decision rules inferred from features.
+Regression Tree: Predicts a continuous numerical value using the average of target values in a region.
+
+Output: in decision tree is discrete, in regression is continous
+
+Another difference lies in the  Splitting Criterion
+Decision Tree uses metrics like: Gini Index and Entropy (Information Gain)
+Splits based on purity of classes in child nodes.
+
+Regression Tree:
+Uses Mean Squared Error (MSE) and Mean Absolute Error (MAE)
+Splits based on minimizing variance of the target values in child nodes.
+
+In the decision each leaf is a class, in the regression each leaf is a number 
+
+
+
+
+
+Calculate information gain with each possible split.
+Divide set with the feature and value that gives the most Information gain 
+Divide tree and do the same for all created branches until a stopping criteria is reached.
+
+
+
+A confusion matrix is a tabular way of visualizing the performance of your prediction model. Each entry in a confusion matrix denotes the number of predictions made by the model where it classified the classes correctly or incorrectly.
+The classes are listed in the same order in the rows as in the columns, therefore the correctly classified elements are located on the main diagonal from top left to bottom right and they correspond to the number of times the two raters agree.(1)
+
+In other words: A confusion matrix, as the name suggests, is a matrix of numbers that tell us where a model gets confused.
+
+
+when to apply decision tree
+what is r2
+whe a decision tree overfits, the error goes down for test data, but for validation data stays high, because the model can t generalize well
+decision trees have the tendncy to overfitt. we can only get a maximum valueof r2 usinga decision tree
+
+
+What a Decision Tree Does
+At each step, it:
+Chooses the best feature to split (using Gini, Entropy, etc.)
+Partitions the data
+Repeats until leaf nodes predict the class
+
+
+Both Gini index and Entropy are metrics used to measure impurity or uncertainty at a node in a decision tree — they help the tree decide which feature to split on at each step.
+
+| Term         | Meaning                                                   |
+| ------------ | --------------------------------------------------------- |
+| **Impurity** | How mixed the classes are in a node (higher = more mixed) |
+| **Purity**   | How "pure" or homogeneous a node is (lower impurity)      |
+
+
+Gini index:
+If 70% of the samples are Class A, 30% are Class B:
+Gini = 1 - (0.7^2-0.3^2) = 0.42
+As the percentage of one class raises, the other goes down, and so the index.
+
+Entropy: 
+Entropy=−(0.7*log2(0.7)+0.3*log2(0.3)≈0.881
+
+
+| Metric  | Value Range | Min Value (Pure Node) | Tends to split on...                    |
+| ------- | ----------- | --------------------- | --------------------------------------- |
+| Gini    | \[0, 0.5]   | 0                     | Larger class dominance                  |
+| Entropy | \[0, \~1.0] | 0                     | Slightly more sensitive to rare classes |
+
+Gini(D) =  1 - Pyes^2 - Pno^2 =  1 - (0.5)^2 - (0.5)^2 = 0.5 
+
+Step 1:  Try splitting on Outlook. Values: Sunny, Overcast, Rainy
+----------------------------------------
+GINI OUTLOOK 
+
+Split:
+Sunny → 2 samples → [No, No] → Gini = 0
+Overcast → 1 sample → [Yes] → Gini = 0
+Rainy → 3 samples → [Yes, Yes, No]
+
+The Gini for Sunny and overcast is 0. 
+What does a 0 gini index mean?
+Gini for rainy is = 1 - (2/3)^2 - (1/3)^2 = 0.444
+
+Weighted Gini for outlook = GiniSunny * 2/6 + GiniOvercast * 1/6 + GiniRainy * 3/6 = 0 * 2/6 + 0 *  1/6 + 0.444 * 3/6 = 0.222  
+----------------------------------------
+GINI TEMPERATURE
+Hot  → 2 samples → [No, No]          → GiniHot = 0
+Mild → [No, Yes, Yes] → 2 Yes, 1 No  → GiniMild = 1 - (2/3)^2 - (1/3)^2 = 0.444
+Cool → 1 sample → [Yes] → Gini = 0
+
+----------------------------------------
+WHICH FEATURE USE TO SPLIT  DATA?
+Both features give the same Gini = 0.222, so we could pick either. Let’s choose Outlook (more categorical).
+----------------------------------------
+Split Rainy branch using Temperature
+
+| Temperature | Play |
+| ----------- | ---- |
+| Cool        | Yes  |
+| Mild        | Yes  |
+| Hot         | No   |
+
+Gini is 0 in any case, so every node is pure
+
+----------------------------------------
+SUMMARY
+
+- Used Gini index to choose features with best split (lowest weighted impurity)
+- Stopped splitting when all labels in a branch were pure (Gini = 0)
+- Final tree predicts Play using Outlook as first feature, and then, Temperature
+
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+EXAMPLE WITH ENTROPY
+
+Entropy of the whole dataset:
+E = -pyes * log2 (pyes) -pno * log2 (pno) = - 0.5 * log2(0.5)- 0.5 * log2(0.5) = 1 
+
+--------------------------------------------------------------------------------
+Trying to split on outlook
+
+Entropy rainy = - (2/3 log2 ( 2/3) +  1/3 log2 ( 1/3)) = 0.918   nsamples: 3
+Entropy sunny is 0 with 2 samples
+Entropy overcast is 0 with one sample
+
+The Weighted entropy for Outlook split is:
+
+Eoutlook = 2/6 *  0 + 1/6 * 0 + 3/6 *  0.918 = 0.495
+
+Information gain outlook = 1 - 0.495 = 0.541
+
+--------------------------------------------------------------------------------
+Try splitting on Temperature
+
+Entropy mild = - (2/3 log2 ( 2/3) +  1/3 log2 ( 1/3)) = 0.918   nsamples: 3
+Entropy hot is 0 with 2 samples
+Entropy cool is 0 with one sample
+
+The information gain is always 0.541
+
+--------------------------------------------------------------------------------
+
+Both Outlook and Temperature give same information gain (0.541) — we can pick either.
+
+--------------------------------------------------------------------------------
+
+ Information Gain = Entropy before - Entropy after = 0.918
+
+ We're evaluating the Rainy subset only, which had its own impurity before the split.
+
+So the Information Gain is calculated within that subset, not globally.
+
+--------------------------------------------------------------------------------
+OVERALL SUMMARY 
+
+| Metric  | Used For Split     | Info Gain or Gini |
+| ------- | ------------------ | ----------------- |
+| Gini    | Minimize impurity  | 0.222             |
+| Entropy | Maximize info gain | 0.541             |
+
+---
+
+How the decision tree algorithm builds the tree from scratch, based on your dataset with categorical features (Weather, Mood) and a categorical label (Drink = Tea or Coffee)?
+
+The algorithm works recursively:
+Start with all the data.
+Try all features to find the best split — the one that gives the lowest Gini impurity after splitting.
+Split the data using that feature.
+Repeat the process on each subset, using remaining features.
+Stop when:
+All examples in a node are the same class → make a leaf.
+No features are left → choose the most common class.
+
+Data
+
+Weather	Mood	Drink
+Sunny	Happy	Tea
+Sunny	Tired	Coffee
+Rainy	Happy	Tea
+Rainy	Tired	Coffee
+Sunny	Tired	Coffee
+Rainy	Happy	Tea
+Sunny	Happy	Tea
+Rainy	Tired	Coffee
+
+splitting by Weather:
+Sunny → 4 samples: ['Tea', 'Coffee', 'Coffee', 'Tea']
+Rainy → 4 samples: ['Tea', 'Coffee', 'Tea', 'Coffee']
+Gini for each subset:
+Sunny: 2 Tea, 2 Coffee → Gini = 1 - (0.5² + 0.5²) = 0.5
+Rainy: 2 Tea, 2 Coffee → Gini = 0.5
+Weighted Gini = 0.5
+
+splitting by Mood:
+Happy → 4 samples: ['Tea', 'Tea', 'Tea', 'Tea'] → Gini = 0
+Tired → 4 samples: ['Coffee', 'Coffee', 'Coffee', 'Coffee'] → Gini = 0
+Weighted Gini = 0
+This is better than 0.5 — so we split on Mood first!
+
+make the split:
+Mood = Happy → all Tea → leaf
+Mood = Tired → all Coffee → leaf
+
+Final tree:
+Mood = Happy:
+  → Tea
+Mood = Tired:
+  → Coffee
+
+
+Summary:
+Step	What It Does
+1	Try each feature
+2	Split dataset by unique values of each feature
+3	Calculate Gini impurity of each split
+4	Pick the feature with the lowest weighted Gini
+5	Recurse on each subset
+6	Stop when data is pure or no features remain

@@ -27,7 +27,7 @@ Choosing the right metric depends on:
 
 Measures the average absolute difference between predicted and true values.
 
-MAE = (1 / n) * Σ |y − ŷ|
+$$MAE = (1 / n) * Σ |y − ŷ|$$
 
 **Characteristics**
 - Easy to interpret
@@ -42,7 +42,7 @@ MAE = (1 / n) * Σ |y − ŷ|
 
 Measures the average squared difference between predicted and true values.
 
-MSE = (1 / n) * Σ (y − ŷ)²
+$$MSE = (1 / n) * Σ (y − ŷ)²$$
 
 **Characteristics**
 - Penalizes large errors more heavily
@@ -57,7 +57,7 @@ MSE = (1 / n) * Σ (y − ŷ)²
 
 Square root of the Mean Squared Error.
 
-RMSE = √MSE
+$$RMSE = √MSE$$
 
 **Characteristics**
 - Same unit as target variable
@@ -69,7 +69,7 @@ RMSE = √MSE
 
 Measures the proportion of variance in the target variable explained by the model.
 
-R² = 1 − (SS_res / SS_tot)
+$$R² = 1 − (SS_res / SS_tot)$$
 
 **Interpretation**
 - 1.0 → perfect fit
@@ -85,7 +85,7 @@ R² = 1 − (SS_res / SS_tot)
 
 Measures prediction error as a percentage.
 
-MAPE = (1 / n) * Σ |(y − ŷ) / y| × 100
+$$MAPE = (1 / n) * Σ |(y − ŷ) / y| × 100$$
 
 **Limitations**
 - Undefined when true values are zero
