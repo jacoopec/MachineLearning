@@ -1,15 +1,13 @@
 # Classification Metrics in Machine Learning
-Classification metrics are a specific category of evaluation metrics designed for classification tasks.
-## Overview
+are a specific category of evaluation metrics designed for classification tasks.
 
-This document provides an overview of the most common evaluation metrics used for classification models in Machine Learning.
-Choosing the right metric is essential, especially when working with imbalanced datasets or when different types of errors
-have different costs.
+
 
 ---
 
-## Why Evaluation Metrics Matter
+## Why Evaluation Metrics ar important 
 
+Imbalanced datasets.
 A model may perform well according to one metric and poorly according to another.
 Evaluation metrics help quantify model performance beyond simple accuracy and provide insight into error behavior.
 
@@ -32,12 +30,9 @@ Most classification metrics are derived from the confusion matrix:
 
 Measures the proportion of correct predictions.
 
-Accuracy = (TP + TN) / (TP + TN + FP + FN)
+$$Accuracy = (TP + TN) / (TP + TN + FP + FN)$$
 
-Pros:
 - Simple and intuitive
-
-Cons:
 - Misleading for imbalanced datasets
 
 ---
@@ -46,10 +41,9 @@ Cons:
 
 Measures how many predicted positive samples are actually positive.
 
-Precision = TP / (TP + FP)
+$$Precision = TP / (TP + FP)$$
 
-Use when:
-- False positives are costly (e.g. spam detection)
+Use when false positives are costly (e.g. spam detection)
 
 ---
 
@@ -57,10 +51,9 @@ Use when:
 
 Measures how many actual positives are correctly identified.
 
-Recall = TP / (TP + FN)
+$$Recall = TP / (TP + FN)$$
 
-Use when:
-- False negatives are costly (e.g. medical diagnosis)
+Use when false negatives are costly (e.g. medical diagnosis)
 
 ---
 
@@ -68,11 +61,9 @@ Use when:
 
 The harmonic mean of precision and recall.
 
-F1 = 2 * (Precision * Recall) / (Precision + Recall)
+$$F1 = 2 * (Precision * Recall) / (Precision + Recall)$$
 
-Use when:
-- Data is imbalanced
-- Both precision and recall are important
+Use when data is imbalanced or both precision and recall are important
 
 ---
 

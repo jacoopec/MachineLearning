@@ -1,0 +1,17 @@
+🎯 What’s the Purpose of This Project?
+🔬 Educational & Structural
+This project is meant to teach the structure of a real ML pipeline:
+
+🧱 Model architecture (CNN)
+
+⚙️ Dataset creation/loading
+
+🧪 Training with loss feedback
+
+📦 Saving data or outputs (images)
+
+It's like a "sandbox" or template that you can:
+
+Replace the random images with real data (like handwritten symbols, micro scans, etc.)
+
+Expand the model for more complex tasks

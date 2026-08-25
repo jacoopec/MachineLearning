@@ -26,4 +26,7 @@ def compute_metrics(y_evaluated,y_true):
 y_evaluated = [0,1,0,1,0,0,0,1,0,0,1,0,1,0,1,0,1,0,1,0,1,1]
 y_true      = [0,1,0,1,0,0,0,1,0,0,1,1,1,0,0,0,1,1,1,1,1,1]
 
-print("Accuracy, precision,recall, F1",compute_metrics(y_evaluated,y_true))
+y_evaluated1 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1]
+y_true1      = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]
+
+print("Accuracy, precision,recall, F1",compute_metrics(y_evaluated1,y_true1))

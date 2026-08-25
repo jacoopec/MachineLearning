@@ -36,8 +36,6 @@ def compute_roc(y_true, y_scores):
 
     return np.array(fpr_list), np.array(tpr_list)
 
-
-
 def compute_precision_recall(y_true, y_scores):
     # Sort by descending score
     sorted_indices = np.argsort(-y_scores)
@@ -65,10 +63,11 @@ def compute_precision_recall(y_true, y_scores):
 
     return np.array(recall_list), np.array(precision_list)
 
-
-
 def compute_auc(fpr, tpr):
-    return np.trapz(tpr, fpr)
+    auc = 0.0
+    for i in range(1, len(fpr)):
+        auc += (fpr[i] - fpr[i - 1]) * (tpr[i] + tpr[i - 1]) / 2
+    return auc
 
 
 

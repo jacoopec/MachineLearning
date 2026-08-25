@@ -1,0 +1,57 @@
+Exploratory Data Analysis (EDA) 
+
+What the data looks like
+Any patterns or imbalances
+Missing values or outliers
+Relationships between features and the target
+
+
+d EDA and feature engineering, 
+
+one-hot encoding 
+
+
+ Decision Tree Classifier
+A simple, intuitive model that splits the data based on feature values.
+✅ Pros:
+Easy to understand and visualize
+Works well with both categorical and numerical data
+No need for feature scaling
+❌ Cons:
+Prone to overfitting
+Can be unstable with small data changes
+
+
+Random Forest Classifier
+An ensemble of decision trees — builds many trees and averages their results.
+✅ Pros:
+Reduces overfitting by averaging
+Handles missing values and outliers well
+Feature importance built-in
+❌ Cons:
+Slower than a single tree
+Harder to interpret
+
+
+🔥 3. Gradient Boosting (e.g. GradientBoostingClassifier, XGBoost, LightGBM)
+Builds trees sequentially, each trying to correct the previous one.
+✅ Pros:
+Often state-of-the-art accuracy
+Can model complex patterns
+Robust to overfitting with tuning
+❌ Cons:
+Slower to train
+Requires careful tuning
+
+
+📈 4. Logistic Regression
+A linear model that predicts probabilities (used for binary classification).
+✅ Pros:
+Simple and fast
+Interpretable coefficients
+Great baseline model
+❌ Cons:
+Assumes linearity
+Needs numeric input (use one-hot encoding)
+Not good for complex or nonlinear data
+
