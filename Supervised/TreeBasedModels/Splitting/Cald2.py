@@ -12,7 +12,7 @@ def best_split(points, labels):
             "error": None,
             "left_indices": None,
             "right_indices": None,
-        }  * data.shape[1]
+        } # * data.shape[1]
     
     for i in range(points.shape[1]):
 
@@ -41,8 +41,8 @@ def best_split(points, labels):
             predictions = np.where(points[:,i] <= threshold, left_class, right_class)
             error = np.mean(predictions != labels)
 
-            if error < best_error[i]:
-                best_error[i] = error
+            if error < best_error:
+                best_error = error
                 best_threshold[i] = threshold
                 best_split_info[i]={
                     "threshold": threshold,
@@ -122,11 +122,12 @@ if __name__ == "__main__":
 
 
     best_split_ = best_split(points, labels)
-    # print(best_split_info[1])
+    # print(best_split_)
+    
 
     plt.scatter(points[:,0], points[:,1], c=labels, cmap='viridis', marker='o')
-    plt.axvline(x=best_split_info[0]["threshold"], linestyle="--")
-    plt.axhline(y=best_split_info[1]["threshold"], linestyle="--")
+    plt.axvline(x=best_split_["threshold"], linestyle="--")
+    plt.axhline(y=best_split_["threshold"], linestyle="--")
     plt.xlabel("X")
     plt.ylabel("Y")
     plt.title("2D Points")
